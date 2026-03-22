@@ -12,3 +12,6 @@
 [2026-03-22T15:12:27Z] [SESSION-1] Starting [TASK-002] 抽离本地 CDP 发现与传输模块 (base=4275e56)
 [2026-03-22T15:14:26Z] [SESSION-1] CHECKPOINT [TASK-002] step=2/4 "cdp discovery/client modules written; running validation"
 [2026-03-22T15:15:47Z] [SESSION-1] Completed [TASK-002] validation=TC-ERR-002|TC-ERR-004+typecheck+client-smoke
+[2026-03-22T15:16:33Z] [SESSION-1] Starting [TASK-003] 实现简化动作执行与四态状态探测 (base=781d7f4)
+[2026-03-22T15:17:51Z] [SESSION-1] CHECKPOINT [TASK-003] step=2/4 "simplify actions and probe written; running validation"
+[2026-03-22T15:20:11Z] [SESSION-1] Completed [TASK-003] validation=TC-ST-001|TC-E-002+typecheck+closeTabs-smoke

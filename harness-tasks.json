@@ -92,14 +92,14 @@
     {
       "id": "TASK-003",
       "title": "实现简化动作执行与四态状态探测",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0",
       "depends_on": [
         "TASK-002"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "781d7f4",
       "validation": {
         "command": "npm run test:unit -- --runInBand --testNamePattern='TC-ST-001|TC-E-002' && npm run typecheck",
         "timeout_seconds": 300
@@ -108,7 +108,16 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:16:32Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:20:11Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "src/cdp/actions/simplify.ts|src/cdp/actions/closeTabs.ts|src/state/probe.ts|src/state/types.ts|src/cdp/client.ts|tests/unit/cdp/simplify.test.ts|tests/unit/cdp/closeTabs.test.ts|tests/unit/state/probe.test.ts|docs/architecture.md",
         "risks": "[ERR-MAP] state probe → 执行上下文失效:返回 unknown 并保留错误元数据(需实现) | simplify action → 样式注入失败:返回结构化失败结果而不是抛异常(需实现) | close-tabs action → DOM 结构变化:记录失败并交给调用方聚合(需实现)",
@@ -117,7 +126,10 @@
         "acceptance_criteria": "1) 单窗口可执行 `Full|Light|Off` 并返回可判定的状态结果，状态探测可映射为 `off|light|full|unknown` 2) 探测脚本失败、上下文不可用或动作执行异常时返回 `unknown` 或结构化错误，不允许把异常直接抛到 UI 层 3) 动作接口、状态枚举和 marker 约定写入 TSDoc，并把探测限制同步到 `docs/architecture.md`",
         "review_requirements": "1) `light/full` 的区分依据必须可复述 2) `unknown` 不能与 `off` 混淆 3) DOM 选择器与 marker 约定要集中管理，避免散落多处",
         "labels": "功能"
-      }
+      },
+      "claimed_by": "SESSION-1",
+      "lease_expires_at": "2026-03-22T17:16:32Z",
+      "completed_at": "2026-03-22T15:20:11Z"
     },
     {
       "id": "TASK-004",

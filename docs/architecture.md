@@ -32,3 +32,13 @@ MVP 只扫描以下本地端口：
 - 连接建立后自动启用 `Runtime.enable`
 - 传输层会跟踪 `Runtime.executionContextCreated / Destroyed / Cleared`
 - 上层服务通过 `call(method, params)` 发送 CDP 指令
+
+## 简化动作与状态真相
+
+- `src/cdp/actions/simplify.ts` 统一负责 `Full / Light / Off`
+- `src/cdp/actions/closeTabs.ts` 统一负责 `Close Tabs`
+- `src/state/probe.ts` 负责把页面状态探测为 `off / light / full / unknown`
+- 状态探测不依赖 UI 缓存，而是读取 DOM marker：
+  - style id: `ag-perf-simplify`
+  - mode attribute: `data-ag-perf-mode`
+- 任一上下文探测失败时允许降级为 `unknown`，避免把探测异常误报为 `off`
