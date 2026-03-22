@@ -295,16 +295,16 @@
     {
       "id": "TASK-008",
       "title": "编写使用指南与恢复排障文档",
-      "status": "pending",
+      "status": "completed",
       "priority": "P2",
       "depends_on": [
         "TASK-005",
         "TASK-006",
         "TASK-007"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "90dc9e7",
       "validation": {
         "command": "test -s README.md && test -s docs/user-guide.md && test -s docs/architecture.md && rg -n 'AG Perf|Close Tabs|127.0.0.1|9000|9222' README.md docs/user-guide.md docs/architecture.md",
         "timeout_seconds": 300
@@ -313,7 +313,16 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:31:51Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:32:34Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "README.md|docs/user-guide.md|docs/architecture.md|package.json|src/extension.ts|src/ui/",
         "risks": "文档与实现脱节|恢复步骤不明显|排障示例过时",
@@ -322,7 +331,10 @@
         "acceptance_criteria": "1) `README.md`、`docs/user-guide.md`、`docs/architecture.md` 说明 macOS-only、固定端口、localhost-only 前提与启动方式 2) 文档覆盖状态栏入口、全局/单窗口流程、命令面板恢复、Close Tabs 确认与无窗口排障 3) 文档中的命令名、状态标签、端口列表与实现保持一致",
         "review_requirements": "1) 文档必须可让新用户独立上手 2) 恢复路径和风险提示要放在醒目位置 3) 不得留下与命令 ID 或状态名不一致的旧文案",
         "labels": "文档"
-      }
+      },
+      "claimed_by": "SESSION-1",
+      "lease_expires_at": "2026-03-22T17:31:51Z",
+      "completed_at": "2026-03-22T15:32:34Z"
     },
     {
       "id": "TASK-009",

@@ -2,6 +2,8 @@
 
 Antigravity 的 VS Code / IDE 插件骨架，用状态栏入口承载后续的 CDP 控制能力。
 
+> 当前 MVP 只支持 macOS，并且只连接 `127.0.0.1` 上的固定 CDP 端口。
+
 ## 当前阶段
 
 当前仓库已完成：
@@ -65,3 +67,9 @@ npm run test:integration -- --runInBand
 
 - 当前版本只提供稳定脚手架和占位激活逻辑。
 - 后续实现会保持命令 ID 稳定，避免文档与行为漂移。
+
+## 启动示例（macOS）
+
+```bash
+open -a "Antigravity" --args --remote-debugging-port=9000
+```

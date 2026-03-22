@@ -25,3 +25,6 @@
 [2026-03-22T15:29:19Z] [SESSION-1] Completed [TASK-006] validation=TC-F-003|TC-F-006|TC-ERR-003+typecheck+ui-smoke
 [2026-03-22T15:30:55Z] [SESSION-1] CHECKPOINT [TASK-007] step=2/4 "integration harness/tests written; running validation"
 [2026-03-22T15:31:31Z] [SESSION-1] Completed [TASK-007] validation=TC-ST-002|TC-ST-003|TC-ERR-001+typecheck
+[2026-03-22T15:31:51Z] [SESSION-1] Starting [TASK-008] 编写使用指南与恢复排障文档 (base=90dc9e7)
+[2026-03-22T15:32:18Z] [SESSION-1] CHECKPOINT [TASK-008] step=2/4 "docs updated; running validation"
+[2026-03-22T15:32:34Z] [SESSION-1] Completed [TASK-008] validation=docs-keyword-check
