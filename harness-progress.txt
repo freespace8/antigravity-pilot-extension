@@ -15,3 +15,6 @@
 [2026-03-22T15:16:33Z] [SESSION-1] Starting [TASK-003] 实现简化动作执行与四态状态探测 (base=781d7f4)
 [2026-03-22T15:17:51Z] [SESSION-1] CHECKPOINT [TASK-003] step=2/4 "simplify actions and probe written; running validation"
 [2026-03-22T15:20:11Z] [SESSION-1] Completed [TASK-003] validation=TC-ST-001|TC-E-002+typecheck+closeTabs-smoke
+[2026-03-22T15:20:49Z] [SESSION-1] Starting [TASK-004] 构建刷新编排与结果聚合服务 (base=4864428)
+[2026-03-22T15:22:38Z] [SESSION-1] CHECKPOINT [TASK-004] step=2/4 "refresh/action services written; running L1 validation"
+[2026-03-22T15:23:36Z] [SESSION-1] Completed [TASK-004] validation=targeted-unit+full-unit+typecheck

@@ -134,15 +134,15 @@
     {
       "id": "TASK-004",
       "title": "构建刷新编排与结果聚合服务",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0",
       "depends_on": [
         "TASK-002",
         "TASK-003"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "4864428",
       "validation": {
         "command": "npm run test:unit -- --runInBand --testNamePattern='TC-F-005|TC-E-001|TC-E-003|TC-ERR-001' && npm run typecheck",
         "timeout_seconds": 300
@@ -151,7 +151,16 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:20:49Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:23:36Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "src/services/refreshService.ts|src/services/actionRunner.ts|src/models/windowState.ts|src/cdp/discovery.ts|src/cdp/actions/|src/state/|tests/unit/services/refreshService.test.ts|tests/unit/services/actionRunner.test.ts|docs/architecture.md",
         "risks": "[ERR-MAP] refresh service → 刷新中窗口新增或消失:按最新快照覆盖并丢弃陈旧项(需实现) | aggregate result → 部分窗口动作失败:继续其他窗口并统计成功/失败(需实现) | shared state cache → 旧缓存覆盖新结果:使用时间戳和单一写入路径防止竞态(未处理←GAP)",
@@ -160,7 +169,10 @@
         "acceptance_criteria": "1) 自动刷新与手动刷新都经由统一编排服务执行，返回窗口列表、状态和时间戳 2) 全窗口动作返回 `成功 N / 失败 M` 的聚合结果，空列表和刷新期间窗口集合变化不会导致崩溃或脏缓存 3) 缓存结构、结果模型与 UI 消费契约写入 TSDoc 或 `docs/architecture.md`，供后续菜单层直接复用",
         "review_requirements": "1) 刷新前后缓存一致性必须可追踪 2) 部分失败不能阻塞成功窗口 3) 不允许在 UI 层私自维护第二套状态真相",
         "labels": "功能"
-      }
+      },
+      "claimed_by": "SESSION-1",
+      "lease_expires_at": "2026-03-22T17:20:49Z",
+      "completed_at": "2026-03-22T15:23:36Z"
     },
     {
       "id": "TASK-005",

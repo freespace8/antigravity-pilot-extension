@@ -42,3 +42,11 @@ MVP 只扫描以下本地端口：
   - style id: `ag-perf-simplify`
   - mode attribute: `data-ag-perf-mode`
 - 任一上下文探测失败时允许降级为 `unknown`，避免把探测异常误报为 `off`
+
+## 刷新编排与单一状态真相
+
+- `src/services/refreshService.ts` 是窗口快照的唯一写入点
+- 刷新流程：discovery → connect → probe → assemble snapshot → 原子替换 cache
+- 旧 refresh 结果不会覆盖更新的 refresh 结果，避免 stale cache 反向写回
+- `src/services/actionRunner.ts` 负责批量或单窗口动作执行，并统一返回 `成功 N / 失败 M` 的聚合结果
+- UI 层后续只消费 refresh snapshot 和 action aggregate result，不再自行拼装状态
