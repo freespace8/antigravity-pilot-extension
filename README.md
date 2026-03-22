@@ -29,6 +29,8 @@ npm run test:unit -- --runInBand
 npm run test:integration -- --runInBand
 ```
 
+集成测试使用受控 fake CDP harness，专门覆盖多窗口同步、混合状态和部分失败聚合。
+
 ## 当前命令
 
 - `AG Perf: Open Menu`

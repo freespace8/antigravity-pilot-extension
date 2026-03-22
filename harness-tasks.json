@@ -257,14 +257,14 @@
     {
       "id": "TASK-007",
       "title": "补齐多窗口同步与混合状态集成测试",
-      "status": "pending",
+      "status": "completed",
       "priority": "P1",
       "depends_on": [
         "TASK-004",
         "TASK-005",
         "TASK-006"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
       "started_at_commit": null,
       "validation": {
@@ -275,7 +275,12 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:31:31Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "tests/integration/multiWindowSync.test.ts|tests/integration/mixedState.test.ts|tests/integration/partialFailure.test.ts|src/test-support/|src/services/refreshService.ts|src/services/actionRunner.ts|src/ui/|README.md",
         "risks": "[ERR-MAP] integration fixture → 多窗口状态变化不可重复:使用受控 fake CDP server 固定事件序列(需实现) | mixed-state rendering → UI 只显示最后一次全局动作:断言逐窗口状态来源于刷新结果(需实现) | partial failure regression → 失败窗口吞掉错误信息:在测试中校验 success/failed 统计与错误元数据(需实现)",
@@ -284,7 +289,8 @@
         "acceptance_criteria": "1) 集成测试可复现外部脚本或另一实例修改状态后，下次打开菜单看到新状态的场景 2) 集成测试覆盖全局 `Full` 后单窗口 `Off` 的混合状态展示，以及部分窗口失败时的聚合结果 3) 集成测试运行方式与夹具说明写入 `README.md` 或测试说明文件",
         "review_requirements": "1) 夹具要可重复运行，不能依赖手工插桩 2) 混合状态断言必须覆盖 `off|light|full|unknown` 中至少三种 3) 失败场景要验证 UI 层拿到的聚合结果而不是只测底层服务",
         "labels": "测试"
-      }
+      },
+      "completed_at": "2026-03-22T15:31:31Z"
     },
     {
       "id": "TASK-008",
