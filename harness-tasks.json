@@ -50,14 +50,14 @@
     {
       "id": "TASK-002",
       "title": "抽离本地 CDP 发现与传输模块",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0",
       "depends_on": [
         "TASK-001"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "4275e56",
       "validation": {
         "command": "npm run test:unit -- --runInBand --testNamePattern='TC-ERR-002|TC-ERR-004' && npm run typecheck",
         "timeout_seconds": 300
@@ -66,7 +66,16 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:12:27Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:15:47Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "src/cdp/discovery.ts|src/cdp/client.ts|src/cdp/targets.ts|src/types/cdp.ts|src/test-support/|tests/unit/cdp/discovery.test.ts|tests/unit/cdp/client.test.ts|docs/architecture.md|README.md",
         "risks": "[ERR-MAP] discovery scan → 端口超时:跳过当前端口并继续后续扫描(需实现) | target parsing → 返回非 localhost 目标:过滤并记录调试信息(需实现) | websocket handshake → 握手失败:关闭 socket 并返回失败结果(需实现)",
@@ -75,7 +84,10 @@
         "acceptance_criteria": "1) 仅扫描 `9000|9001|9002|9003|9222` 并只保留 `127.0.0.1` 的可操作目标 2) 端口超时、无效 JSON、握手失败不会阻塞其他端口发现，失败目标会被安全忽略 3) Discovery/Transport 对外接口带 TSDoc，且固定端口与 localhost 约束同步到 `docs/architecture.md` 或 `README.md`",
         "review_requirements": "1) 固定端口常量只定义一处 2) 不允许偷偷连接远端地址 3) 超时和连接错误必须被具名处理而不是吞掉",
         "labels": "功能"
-      }
+      },
+      "claimed_by": "SESSION-1",
+      "lease_expires_at": "2026-03-22T17:12:27Z",
+      "completed_at": "2026-03-22T15:15:47Z"
     },
     {
       "id": "TASK-003",

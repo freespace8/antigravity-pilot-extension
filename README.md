@@ -10,10 +10,11 @@ Antigravity 的 VS Code / IDE 插件骨架，用状态栏入口承载后续的 C
 - `AG Perf` 状态栏入口
 - 命令面板恢复命令占位
 - Jest 单元 / 集成测试脚手架
+- 固定端口 CDP 发现模块
+- localhost-only WebSocket 传输层
 
 后续任务会继续接入：
 
-- 固定端口 CDP 发现
 - 多窗口状态探测
 - `Full / Light / Off / Close Tabs / Refresh`
 
@@ -30,6 +31,12 @@ npm run test:integration -- --runInBand
 
 - `AG Perf: Open Menu`
 - `AG Perf: Recover Off`
+
+## CDP 约束
+
+- 只扫描固定端口：`9000`、`9001`、`9002`、`9003`、`9222`
+- 只连接 `127.0.0.1`
+- 发现或连接失败时会跳过问题端口，不阻塞其他端口
 
 ## 说明
 
