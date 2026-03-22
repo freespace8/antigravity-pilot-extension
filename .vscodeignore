@@ -1,5 +1,12 @@
 coverage/**
-dist/test/**
-node_modules/**
 tests/**
+src/**
+docs/**
+harness-progress.txt
+harness-tasks.json
+issues.csv
+TODOS.md
+jest.*.config.cjs
+tsconfig.json
+.gitignore
 *.log

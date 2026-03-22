@@ -16,7 +16,7 @@ describe("bootstrap scaffolding", () => {
 
     expect(commands).toEqual(expect.arrayContaining(["agPerf.openMenu", "agPerf.recoverOff"]));
     expect(packageJson.activationEvents).toEqual(
-      expect.arrayContaining(["onCommand:agPerf.openMenu", "onCommand:agPerf.recoverOff"])
+      expect.arrayContaining(["onStartupFinished", "onCommand:agPerf.openMenu", "onCommand:agPerf.recoverOff"])
     );
   });
 

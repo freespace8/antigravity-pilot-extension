@@ -35,6 +35,7 @@ npm run test:integration -- --runInBand
 
 ## 当前命令
 
+- 启动完成后会自动显示右下角状态栏入口 `AG Perf`
 - `AG Perf: Open Menu`
 - `AG Perf: Recover Off`
 

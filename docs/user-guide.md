@@ -14,8 +14,9 @@ open -a "Antigravity" --args --remote-debugging-port=9000
 
 ## 入口
 
-- 状态栏：`AG Perf`
+- 状态栏：VS Code 启动完成后，右下角会自动显示 `AG Perf`
 - 命令面板恢复命令：`AG Perf: Recover Off`
+- 如果状态栏暂时没出现，可以先执行 `AG Perf: Open Menu` 触发一次扩展激活
 
 ## 全局菜单
 
