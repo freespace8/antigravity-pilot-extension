@@ -28,3 +28,5 @@
 [2026-03-22T15:31:51Z] [SESSION-1] Starting [TASK-008] 编写使用指南与恢复排障文档 (base=90dc9e7)
 [2026-03-22T15:32:18Z] [SESSION-1] CHECKPOINT [TASK-008] step=2/4 "docs updated; running validation"
 [2026-03-22T15:32:34Z] [SESSION-1] Completed [TASK-008] validation=docs-keyword-check
+[2026-03-22T15:32:54Z] [SESSION-1] Starting [TASK-009] [回归测试] (base=5a1d8f5)
+[2026-03-22T15:33:21Z] [SESSION-1] Completed [TASK-009] validation=full-regression

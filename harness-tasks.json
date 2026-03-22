@@ -339,7 +339,7 @@
     {
       "id": "TASK-009",
       "title": "[回归测试]",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0",
       "depends_on": [
         "TASK-001",
@@ -351,9 +351,9 @@
         "TASK-007",
         "TASK-008"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "5a1d8f5",
       "validation": {
         "command": "npm run typecheck && npm run test:unit -- --runInBand && npm run test:integration -- --runInBand",
         "timeout_seconds": 300
@@ -362,7 +362,16 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:32:54Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:33:21Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "src/|tests/|package.json|tsconfig.json|README.md|docs/",
         "risks": "回归引入新 bug|测试夹具不稳定|状态探测回退",
@@ -371,7 +380,10 @@
         "acceptance_criteria": "1) `npm run typecheck`、`npm run test:unit`、`npm run test:integration` exit code 全为 0 2) 无新增 warning 或未解释的 flaky case 3) 覆盖 PRD 中高优先级场景的测试均执行通过",
         "review_requirements": "检查测试覆盖率|确认高优先级场景未被跳过|记录失败重现步骤",
         "labels": "回归"
-      }
+      },
+      "claimed_by": "SESSION-1",
+      "lease_expires_at": "2026-03-22T17:32:54Z",
+      "completed_at": "2026-03-22T15:33:21Z"
     },
     {
       "id": "TASK-010",
