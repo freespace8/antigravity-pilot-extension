@@ -388,14 +388,14 @@
     {
       "id": "TASK-010",
       "title": "[Code Review]",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0",
       "depends_on": [
         "TASK-009"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "ce5ffad",
       "validation": {
         "command": "git diff --stat && test -s docs/review-report.md",
         "timeout_seconds": 300
@@ -404,7 +404,16 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:34:01Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:35:12Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "src/|tests/|docs/|package.json|tsconfig.json|README.md",
         "risks": "遗漏逻辑错误|安全边界被放宽|文档与实现不一致",
@@ -413,7 +422,10 @@
         "acceptance_criteria": "1) `git diff` 逐文件审查完成 2) 无 P0/P1 问题或已转化为新的 Fix 任务 3) `docs/review-report.md` 已生成且非空，覆盖架构、测试、文档和风险回顾",
         "review_requirements": "对照 PRD 与测试矩阵检查一致性|核对 Boundary 外无顺手重构|确认 Error Map 的 GAP 已关闭或显式记录",
         "labels": "审查"
-      }
+      },
+      "claimed_by": "SESSION-1",
+      "lease_expires_at": "2026-03-22T17:34:01Z",
+      "completed_at": "2026-03-22T15:35:12Z"
     },
     {
       "id": "TASK-011",
