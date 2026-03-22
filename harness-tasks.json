@@ -430,14 +430,14 @@
     {
       "id": "TASK-011",
       "title": "[交付报告]",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0",
       "depends_on": [
         "TASK-010"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "ec5e2c6",
       "validation": {
         "command": "test -s docs/delivery-report.md",
         "timeout_seconds": 300
@@ -446,7 +446,20 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:35:50Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:39:10Z",
+          "message": "resumed in SESSION-2 after interruption"
+        },
+        {
+          "ts": "2026-03-22T15:39:10Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "docs/|README.md|issues.csv",
         "risks": "遗漏残留风险|验证证据不足",
@@ -455,11 +468,14 @@
         "acceptance_criteria": "1) `docs/delivery-report.md` 已生成且非空 2) 报告包含变更清单、验证证据、残留风险和手动验证建议 3) 报告引用 PRD、测试矩阵和 review 结论，便于后续执行或交付",
         "review_requirements": "检查证据链接可追溯|残留风险与限制写清楚|不遗漏手动验证前置条件",
         "labels": "文档"
-      }
+      },
+      "claimed_by": "SESSION-2",
+      "lease_expires_at": "2026-03-22T17:39:10Z",
+      "completed_at": "2026-03-22T15:39:10Z"
     }
   ],
-  "session_count": 1,
-  "last_session": "2026-03-22T15:05:20Z",
+  "session_count": 2,
+  "last_session": "2026-03-22T15:39:10Z",
   "health": 100,
   "baseline": {
     "command": "test -f package.json && npm run test:unit -- --runInBand",
