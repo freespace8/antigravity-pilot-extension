@@ -8,7 +8,8 @@ Antigravity 的 VS Code / IDE 插件骨架，用状态栏入口承载后续的 C
 
 - TypeScript 扩展骨架
 - `AG Perf` 状态栏入口
-- 命令面板恢复命令占位
+- 全局 QuickPick 菜单
+- 命令面板恢复 `Off`
 - Jest 单元 / 集成测试脚手架
 - 固定端口 CDP 发现模块
 - localhost-only WebSocket 传输层
@@ -31,6 +32,15 @@ npm run test:integration -- --runInBand
 
 - `AG Perf: Open Menu`
 - `AG Perf: Recover Off`
+
+## 当前全局菜单顺序
+
+- `Apply to All: Full`
+- `Apply to All: Light`
+- `Apply to All: Off`
+- `Apply to All: Close Tabs`
+- `Select Window…`
+- `Refresh`
 
 ## CDP 约束
 

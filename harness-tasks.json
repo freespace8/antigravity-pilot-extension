@@ -177,13 +177,13 @@
     {
       "id": "TASK-005",
       "title": "接入状态栏入口与全局 QuickPick 流程",
-      "status": "pending",
+      "status": "completed",
       "priority": "P1",
       "depends_on": [
         "TASK-001",
         "TASK-004"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
       "started_at_commit": null,
       "validation": {
@@ -194,7 +194,12 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:26:54Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "src/extension.ts|src/ui/statusBar.ts|src/ui/globalMenu.ts|src/services/refreshService.ts|src/services/actionRunner.ts|package.json|tests/unit/ui/statusBar.test.ts|tests/unit/ui/globalMenu.test.ts|README.md",
         "risks": "[ERR-MAP] status bar action → 打开菜单前未刷新:统一改走 refreshService(需实现) | command palette recovery → 状态栏隐藏后无法恢复:显式注册 Off 恢复命令并写入文案(需实现) | empty state UI → 无窗口时直接报错退出:显示空状态项和 Refresh(需实现)",
@@ -203,7 +208,8 @@
         "acceptance_criteria": "1) 点击状态栏后先自动刷新，再按 `Apply to All: Full|Light|Off|Close Tabs|Select Window…|Refresh` 顺序展示一级菜单 2) 无窗口时仍打开菜单并显示空状态，执行全窗口动作后展示聚合结果摘要 3) 状态栏命令 ID、命令面板恢复命令、菜单文案与 activationEvents 已同步到 `package.json` 和 `README.md`",
         "review_requirements": "1) 菜单顺序必须与 PRD 一致 2) 打开菜单时不能依赖过期缓存 3) 命令面板恢复路径在状态栏隐藏后仍可发现",
         "labels": "功能"
-      }
+      },
+      "completed_at": "2026-03-22T15:26:54Z"
     },
     {
       "id": "TASK-006",

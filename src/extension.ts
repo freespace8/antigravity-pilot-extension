@@ -1,33 +1,54 @@
 import * as vscode from "vscode";
 
+import { ActionRunner } from "./services/actionRunner";
+import { RefreshService } from "./services/refreshService";
+import { openGlobalMenu } from "./ui/globalMenu";
+import { createStatusBarItem } from "./ui/statusBar";
+
 export const COMMAND_OPEN_MENU = "agPerf.openMenu";
 export const COMMAND_RECOVER_OFF = "agPerf.recoverOff";
 export const STATUS_BAR_TEXT = "AG Perf";
 
-function showPlaceholderMessage(message: string): Thenable<string | undefined> {
+function showMessage(message: string): Thenable<string | undefined> {
   return vscode.window.showInformationMessage(message);
 }
 
-export function createStatusBarItem(): vscode.StatusBarItem {
-  const item = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-  item.text = STATUS_BAR_TEXT;
-  item.tooltip = "Open the Antigravity performance controller";
-  item.command = COMMAND_OPEN_MENU;
-  return item;
-}
+export type ExtensionController = {
+  openMenu(): Promise<void>;
+  recoverOff(): Promise<void>;
+};
 
-export async function openMenu(): Promise<void> {
-  await showPlaceholderMessage("AG Perf scaffold initialized. Menu flow will be connected in later tasks.");
-}
+export function createExtensionController(dependencies?: {
+  refreshService?: RefreshService;
+  actionRunner?: ActionRunner;
+  onSelectWindow?: () => Promise<void>;
+}): ExtensionController {
+  const refreshService = dependencies?.refreshService ?? new RefreshService();
+  const actionRunner = dependencies?.actionRunner ?? new ActionRunner();
 
-export async function recoverOff(): Promise<void> {
-  await showPlaceholderMessage("AG Perf recovery scaffold initialized. Off recovery flow will be connected in later tasks.");
+  return {
+    async openMenu() {
+      await openGlobalMenu({
+        refreshService,
+        actionRunner,
+        onSelectWindow: dependencies?.onSelectWindow
+          ? async () => dependencies.onSelectWindow!()
+          : undefined
+      });
+    },
+    async recoverOff() {
+      const snapshot = await refreshService.refresh();
+      const result = await actionRunner.runForAll("off", snapshot.windows);
+      await showMessage(`off: success ${result.succeeded} / failed ${result.failed}`);
+    }
+  };
 }
 
 export function activate(context: vscode.ExtensionContext): void {
-  const statusBarItem = createStatusBarItem();
-  const openMenuDisposable = vscode.commands.registerCommand(COMMAND_OPEN_MENU, openMenu);
-  const recoverDisposable = vscode.commands.registerCommand(COMMAND_RECOVER_OFF, recoverOff);
+  const controller = createExtensionController();
+  const statusBarItem = createStatusBarItem(COMMAND_OPEN_MENU, STATUS_BAR_TEXT);
+  const openMenuDisposable = vscode.commands.registerCommand(COMMAND_OPEN_MENU, () => controller.openMenu());
+  const recoverDisposable = vscode.commands.registerCommand(COMMAND_RECOVER_OFF, () => controller.recoverOff());
 
   statusBarItem.show();
 

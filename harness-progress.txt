@@ -18,3 +18,5 @@
 [2026-03-22T15:20:49Z] [SESSION-1] Starting [TASK-004] 构建刷新编排与结果聚合服务 (base=4864428)
 [2026-03-22T15:22:38Z] [SESSION-1] CHECKPOINT [TASK-004] step=2/4 "refresh/action services written; running L1 validation"
 [2026-03-22T15:23:36Z] [SESSION-1] Completed [TASK-004] validation=targeted-unit+full-unit+typecheck
+[2026-03-22T15:25:56Z] [SESSION-1] CHECKPOINT [TASK-005] step=2/4 "status bar + global menu wired; running validation"
+[2026-03-22T15:26:54Z] [SESSION-1] Completed [TASK-005] validation=TC-F-001|TC-F-002|TC-F-004|TC-E-001+typecheck+ui-smoke
