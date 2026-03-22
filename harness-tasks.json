@@ -10,12 +10,12 @@
     {
       "id": "TASK-001",
       "title": "搭建 TypeScript 插件骨架与验证脚本",
-      "status": "pending",
+      "status": "completed",
       "priority": "P0",
       "depends_on": [],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "7797f03",
       "validation": {
         "command": "npm run typecheck && npm run test:unit -- --runInBand --testNamePattern='bootstrap|manifest'",
         "timeout_seconds": 300
@@ -24,7 +24,16 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:06:05Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:11:34Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "package.json|tsconfig.json|jest.unit.config.cjs|jest.integration.config.cjs|src/extension.ts|src/test-support/|tests/bootstrap.test.ts|README.md|.vscodeignore",
         "risks": "[ERR-MAP] package.json scripts → 缺少 typecheck/test script:在 scaffold 中统一声明并 fail fast(需实现) | extension activation → 命令未贡献导致无法激活:注册占位命令并补 activationEvents(需实现)",
@@ -33,7 +42,10 @@
         "acceptance_criteria": "1) `package.json`、`tsconfig.json`、`src/extension.ts`、Jest 配置与基础测试样例存在且 `npm run typecheck` 通过 2) 扩展可通过占位命令激活，缺少脚本或配置时本地命令会快速失败而不是静默通过 3) 开发命令、扩展激活方式与基础命令贡献已同步到 `README.md` 或 manifest 注释",
         "review_requirements": "1) 不引入与 MVP 无关的依赖 2) `package.json` scripts 命名清晰且可复用 3) 激活事件与占位命令可被后续任务稳定扩展",
         "labels": "功能"
-      }
+      },
+      "claimed_by": "SESSION-1",
+      "lease_expires_at": "2026-03-22T17:06:05Z",
+      "completed_at": "2026-03-22T15:11:34Z"
     },
     {
       "id": "TASK-002",
