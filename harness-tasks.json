@@ -214,15 +214,15 @@
     {
       "id": "TASK-006",
       "title": "接入单窗口菜单与 Close Tabs 确认流程",
-      "status": "pending",
+      "status": "completed",
       "priority": "P1",
       "depends_on": [
         "TASK-004",
         "TASK-005"
       ],
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
-      "started_at_commit": null,
+      "started_at_commit": "7409c8b",
       "validation": {
         "command": "npm run test:unit -- --runInBand --testNamePattern='TC-F-003|TC-F-006|TC-ERR-003' && npm run typecheck",
         "timeout_seconds": 300
@@ -231,7 +231,16 @@
         "cleanup": null
       },
       "error_log": [],
-      "checkpoints": [],
+      "checkpoints": [
+        {
+          "ts": "2026-03-22T15:27:19Z",
+          "message": "task claimed"
+        },
+        {
+          "ts": "2026-03-22T15:29:19Z",
+          "message": "validation passed"
+        }
+      ],
       "notes": {
         "boundary": "src/ui/windowMenu.ts|src/ui/confirm.ts|src/services/refreshService.ts|src/services/actionRunner.ts|src/cdp/actions/closeTabs.ts|package.json|tests/unit/ui/windowMenu.test.ts|tests/unit/ui/confirm.test.ts|README.md|docs/user-guide.md",
         "risks": "[ERR-MAP] window picker → 状态为 unknown 的窗口不可选:继续允许动作并在结果中解释风险(需实现) | close-tabs confirm → 用户取消后仍发送请求:把执行放到确认后的单一路径(需实现) | single-window action → 目标窗口映射错误:操作前后校验 window id 与 port(需实现)",
@@ -240,7 +249,10 @@
         "acceptance_criteria": "1) `Select Window…` 列表展示 `标题|端口|状态`，并为单窗口提供 `Full|Light|Off|Close Tabs|Refresh This Window` 动作 2) `Close Tabs` 执行前必须出现确认步骤，取消后不发送任何动作且原标签保持不变 3) 单窗口命令文案、确认提示和恢复说明已同步到 `package.json`、`README.md` 或 `docs/user-guide.md`",
         "review_requirements": "1) 目标窗口上下文必须在确认前后保持清晰 2) 取消确认必须是严格 no-op 3) 单窗口流程不能误操作其他窗口",
         "labels": "功能"
-      }
+      },
+      "claimed_by": "SESSION-1",
+      "lease_expires_at": "2026-03-22T17:27:19Z",
+      "completed_at": "2026-03-22T15:29:19Z"
     },
     {
       "id": "TASK-007",

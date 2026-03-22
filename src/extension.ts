@@ -4,6 +4,7 @@ import { ActionRunner } from "./services/actionRunner";
 import { RefreshService } from "./services/refreshService";
 import { openGlobalMenu } from "./ui/globalMenu";
 import { createStatusBarItem } from "./ui/statusBar";
+import { openWindowMenu } from "./ui/windowMenu";
 
 export const COMMAND_OPEN_MENU = "agPerf.openMenu";
 export const COMMAND_RECOVER_OFF = "agPerf.recoverOff";
@@ -21,7 +22,7 @@ export type ExtensionController = {
 export function createExtensionController(dependencies?: {
   refreshService?: RefreshService;
   actionRunner?: ActionRunner;
-  onSelectWindow?: () => Promise<void>;
+  onSelectWindow?: (refreshService: RefreshService, actionRunner: ActionRunner) => Promise<void>;
 }): ExtensionController {
   const refreshService = dependencies?.refreshService ?? new RefreshService();
   const actionRunner = dependencies?.actionRunner ?? new ActionRunner();
@@ -31,9 +32,18 @@ export function createExtensionController(dependencies?: {
       await openGlobalMenu({
         refreshService,
         actionRunner,
-        onSelectWindow: dependencies?.onSelectWindow
-          ? async () => dependencies.onSelectWindow!()
-          : undefined
+        onSelectWindow: async (snapshot) => {
+          if (dependencies?.onSelectWindow) {
+            await dependencies.onSelectWindow(refreshService, actionRunner);
+            return;
+          }
+
+          await openWindowMenu({
+            windows: snapshot.windows,
+            refreshService,
+            actionRunner
+          });
+        }
       });
     },
     async recoverOff() {

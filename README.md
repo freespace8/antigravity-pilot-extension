@@ -9,6 +9,7 @@ Antigravity 的 VS Code / IDE 插件骨架，用状态栏入口承载后续的 C
 - TypeScript 扩展骨架
 - `AG Perf` 状态栏入口
 - 全局 QuickPick 菜单
+- 单窗口菜单与 `Refresh This Window`
 - 命令面板恢复 `Off`
 - Jest 单元 / 集成测试脚手架
 - 固定端口 CDP 发现模块
@@ -41,6 +42,16 @@ npm run test:integration -- --runInBand
 - `Apply to All: Close Tabs`
 - `Select Window…`
 - `Refresh`
+
+## 单窗口动作
+
+- `Full`
+- `Light`
+- `Off`
+- `Close Tabs`
+- `Refresh This Window`
+
+更多操作说明见 `docs/user-guide.md`。
 
 ## CDP 约束
 
