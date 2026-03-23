@@ -33,6 +33,27 @@ npm run test:integration -- --runInBand
 
 集成测试使用受控 fake CDP harness，专门覆盖多窗口同步、混合状态和部分失败聚合。
 
+## 发布 `.vsix` 到 GitHub Release
+
+仓库现在使用 **`master` + tag 发版**：
+
+```bash
+npm ci
+npm test
+npm version patch
+git push origin master --follow-tags
+```
+
+- `npm version patch` 会同时更新 `package.json` 版本号并创建 `vX.Y.Z` tag
+- push 到 `master` 后，`v*` tag 会触发 GitHub Actions 打包 `.vsix`
+- 打包产物会自动上传到对应的 GitHub Release
+
+如需本地先验包，可运行：
+
+```bash
+npm run package:vsix -- --out antigravity-extention-v$(node -p "require('./package.json').version").vsix
+```
+
 ## 当前命令
 
 - 启动完成后会自动显示右下角状态栏入口 `AG Perf`

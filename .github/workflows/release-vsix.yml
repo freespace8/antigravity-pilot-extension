@@ -1,0 +1,48 @@
+name: Release VSIX
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.18.1
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Package VSIX
+        run: npm run package:vsix -- --out "antigravity-extention-${{ github.ref_name }}.vsix"
+
+      - name: Publish GitHub Release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_ASSET: antigravity-extention-${{ github.ref_name }}.vsix
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" "$RELEASE_ASSET" --clobber
+          else
+            gh release create "$RELEASE_TAG" "$RELEASE_ASSET" \
+              --title "$RELEASE_TAG" \
+              --generate-notes
+          fi
